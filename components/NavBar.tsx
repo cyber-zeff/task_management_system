@@ -19,7 +19,7 @@ export default function NavBar({ user, space }: Props) {
         <div className="navbar bg-[#E5E1DE] px-8 py-2 border-b shadow">
             <div className="flex-1">
                 <Link href="/" className="flex items-center ml-2">
-                    <Image src="/logo.png" alt="Logo" width={80} height={80} className='mt-1' />
+                    <Image src="/logo.png" alt="Logo" width={90} height={85} className='mt-1' />
                     <div className="text-xl font-semibold ml-3 text-slate-700 hidden md:inline-block">
                         {space?.name}
                     </div>
