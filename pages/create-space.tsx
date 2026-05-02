@@ -78,7 +78,7 @@ const CreateSpace: NextPage = () => {
                         </div>
                         <div>
                             <label htmlFor="slug" className="text-lg">
-                                Space slug
+                                Space slug (url name)
                             </label>
                             <input
                                 id="slug"
