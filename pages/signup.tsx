@@ -50,7 +50,7 @@ export default function Signup() {
                     <Image src="/logo.png" width={120} height={120} alt="logo" className='mt-2.5' />
                 </div>
             </Link>
-            <div className="items-center justify-center w-full bg-white rounded-lg shadow lg:flex md:mt-0 lg:max-w-screen-md xl:p-0">
+            <div className="items-center justify-center w-full bg-[#f4f2f1] rounded-lg shadow lg:flex md:mt-0 lg:max-w-screen-md xl:p-0">
                 <div className="w-full p-6 space-y-8 sm:p-8 lg:p-16">
                     <h2 className="text-2xl font-bold text-gray-900 lg:text-3xl">Create a Free Account</h2>
                     <form className="mt-8" action="#" onSubmit={(e) => void onSignup(e)}>
