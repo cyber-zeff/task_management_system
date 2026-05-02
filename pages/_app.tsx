@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
             <SessionProvider session={session}>
                 <ZenStackHooksProvider value={{ endpoint: '/api/model' }}>
                     <AppContent>
-                        <div className="flex-grow h-100 bg-white">
+                        <div className="flex-grow h-100 bg-[#E5E1DE]">
                             <Component {...pageProps} />
                             <ToastContainer position="top-center" autoClose={2000} hideProgressBar={true} />
                         </div>
