@@ -43,11 +43,11 @@ export default function Signup() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center px-6 pt-4 lg:pt-8 mx-auto h-screen bg-cover bg-[url('/auth-bg.jpg')]">
+        <div className="flex flex-col items-center justify-center px-6 pt-4 lg:pt-8 mx-auto h-screen bg-[#E5E1DE]">
             <Link href="/">
                 <div className="flex space-x-4 items-center mb-6 lg:mb-10">
-                    <Image src="/logo.png" width={42} height={42} alt="logo" />
-                    <h1 className="text-4xl text-white">Welcome to Todo</h1>
+                    <h1 className="text-3xl">Welcome to </h1>
+                    <Image src="/logo.png" width={120} height={120} alt="logo" className='mt-2.5' />
                 </div>
             </Link>
             <div className="items-center justify-center w-full bg-white rounded-lg shadow lg:flex md:mt-0 lg:max-w-screen-md xl:p-0">
@@ -102,12 +102,12 @@ export default function Signup() {
                                 </label>
                             </div>
                         </div>
-                        <button className="btn btn-primary mt-4" type="submit">
+                        <button className="btn bg-[#EC683E] hover:bg-[#e6653e] text-[#fff] mt-4" type="submit">
                             Create account
                         </button>
                         <div className="mt-4 text-sm font-medium text-gray-500">
                             Already have an account?{' '}
-                            <Link href="/signin" className="text-primary">
+                            <Link href="/signin" className="text-[#EC683E] underline">
                                 Login here
                             </Link>
                         </div>
