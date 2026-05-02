@@ -32,7 +32,7 @@ export default function NavBar({ user, space }: Props) {
                     </label>
                     <ul
                         tabIndex={0}
-                        className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                        className="menu menu-compact dropdown-content mt-2 border-1 border-white p-2 shadow-md bg-[#e9e5e2] rounded-box w-52"
                     >
                         <li className="border-b border-gray-200">{user && <div>{user.name || user.email}</div>}</li>
                         <li>
