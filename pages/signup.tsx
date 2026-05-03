@@ -43,77 +43,103 @@ export default function Signup() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center px-6 pt-4 lg:pt-8 mx-auto h-screen bg-[#E5E1DE]">
-            <Link href="/">
-                <div className="flex space-x-4 items-center mb-6 lg:mb-10">
-                    <h1 className="text-3xl">Welcome to </h1>
-                    <Image src="/logo.png" width={120} height={120} alt="logo" className='mt-1.5 md:mt-2.5' />
-                </div>
-            </Link>
-            <div className="items-center justify-center w-full bg-[#f4f2f1] rounded-lg shadow lg:flex md:mt-0 lg:max-w-screen-md xl:p-0">
-                <div className="w-full p-6 space-y-8 sm:p-8 lg:p-16">
-                    <h2 className="text-2xl font-bold text-gray-900 lg:text-3xl">Create a Free Account</h2>
-                    <form className="mt-8" action="#" onSubmit={(e) => void onSignup(e)}>
-                        <div className="mb-6">
-                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
-                                Your email
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                placeholder="Email address"
-                                required
-                            />
-                        </div>
-                        <div className="mb-6">
-                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">
-                                Your password
-                            </label>
-                            <input
-                                type="password"
-                                id="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="••••••••"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                                required
-                            />
-                        </div>
-                        <div className="flex items-start">
-                            <div className="flex items-center h-5">
+        <>
+            <div className="flex flex-col md:items-center justify-center px-6 pt-0 lg:pt-8 mx-auto h-screen bg-[#E5E1DE]">
+                <Link href="/" className='hidden md:block'>
+                    <div className="flex space-x-4 items-center mb-6 lg:mb-10">
+                        <h1 className="text-3xl">Welcome to </h1>
+                        <Image src="/logo.png" width={120} height={120} alt="logo" className='mt-1.5 md:mt-2.5' />
+                    </div>
+                </Link>
+                <div className="md:items-center md:justify-center w-full bg-[#E5E1DE] md:bg-[#f4f2f1] rounded-lg md:shadow lg:flex md:mt-0 lg:max-w-screen-md xl:p-0">
+                    <div className="w-full md:space-y-8 p-0 lg:p-16">
+                        <h2 className="text-[28px] font-bold text-gray-900 lg:text-3xl">Create a Free Account</h2>
+                        <h4>Please register using valid email <br className='block md:hidden' /> address to avoid verification issues</h4>
+
+                        <form className="mt-8" action="#" onSubmit={(e) => void onSignup(e)}>
+                            <div className="mb-6">
+                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">
+                                    Email
+                                </label>
                                 <input
-                                    id="remember"
-                                    aria-describedby="remember"
-                                    name="remember"
-                                    type="checkbox"
-                                    className="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
+                                    type="email"
+                                    id="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="bg-gray-50 border border-black text-[#BFBAB4] sm:text-sm rounded-[12px] block w-full p-2.5"
+                                    placeholder="jhondoe@gmail.com"
                                     required
                                 />
                             </div>
-                            <div className="ml-3 text-sm">
-                                <label htmlFor="remember" className="font-medium text-gray-900">
-                                    I accept the{' '}
-                                    <a href="#" className="text-primary-700 hover:underline">
-                                        Terms and Conditions
-                                    </a>
+                            <div className="mb-6">
+                                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">
+                                    Password
                                 </label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    placeholder="••••••••"
+                                    className="bg-gray-50 border border-black text-[#BFBAB4] sm:text-sm rounded-[12px] block w-full p-2.5"
+                                    required
+                                />
                             </div>
-                        </div>
-                        <button className="btn bg-[#EC683E] hover:bg-[#e6653e] text-[#fff] mt-4" type="submit">
-                            Create account
-                        </button>
-                        <div className="mt-4 text-sm font-medium text-gray-500">
-                            Already have an account?{' '}
-                            <Link href="/signin" className="text-[#EC683E] underline">
-                                Login here
-                            </Link>
-                        </div>
-                    </form>
+                            <div className="flex items-start">
+                                <div className="flex items-center h-5">
+                                    <input
+                                        id="remember"
+                                        aria-describedby="remember"
+                                        name="remember"
+                                        type="checkbox"
+                                        className="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
+                                        required
+                                    />
+                                </div>
+                                <div className="ml-3 text-sm">
+                                    <label htmlFor="remember" className="font-medium text-gray-900">
+                                        I accept the{' '}
+                                        <a href="#" className="text-primary-700 hover:underline">
+                                            Terms and Conditions
+                                        </a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="flex flex-col lg:flex-row lg:items-center gap-4 mt-4">
+                                <button className="btn max-md:w-full rounded-[12px] bg-[#EC683E] hover:bg-[#e6653e] text-[#fff] max-md:mt-4 lg:w-fit" type="submit">
+                                    Continue
+                                </button>
+
+                                <div className='md:hidden flex items-center justify-center text-[#BFBAB4] text-[16px]'>
+                                    <div className='h-[1px] w-[144px] bg-[#BFBAB4]'></div>
+                                    <div className='mx-4'>Or</div>
+                                    <div className='h-[1px] w-[144px] bg-[#BFBAB4]'></div>
+                                </div>
+                                
+                                <div
+                                    className="btn rounded-[12px] btn-outline w-full lg:w-fit"
+                                    onClick={() => void signIn('github', { callbackUrl: '/' })}
+                                >
+                                    Sign up with GitHub
+                                </div>
+                            </div>
+
+                            <div className="hidden md:block mt-4 text-sm font-medium text-gray-500">
+                                Already have an account?{' '}
+                                <Link href="/signin" className="text-[#EC683E] underline">
+                                    Sign in instead
+                                </Link>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div className="fixed bottom-8 w-full text-center md:hidden text-sm font-medium text-gray-500">
+                Already have an account?{' '}
+                <Link href="/signin" className="text-[#EC683E] underline">
+                    Sign in instead
+                </Link>
+            </div>
+        </>
     );
 }
