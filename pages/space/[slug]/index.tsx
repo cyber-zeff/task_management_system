@@ -174,7 +174,6 @@ export default function SpaceHome(props: Props) {
                             </Link>
                             <Link href={'/calender'} className='py-2.5 ps-2 pe-3'>
                                 <Image src="/calender.svg" alt="Calender icon" width={25} height={25} />
-                                {/* Calender */}
                             </Link>
                             <SpaceMembers />
                         </div>
