@@ -25,7 +25,7 @@ export default function NavBar({ user, space }: Props) {
                     </div>
                 </Link>
             </div>
-            <div className="flex-none">
+            <div className="flex-none z-10">
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         {user && <Avatar user={user} />}
