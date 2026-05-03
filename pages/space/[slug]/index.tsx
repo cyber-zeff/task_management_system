@@ -2,7 +2,6 @@ import { SpaceContext } from '@lib/context';
 import { useCreateList, useFindManyList } from '@lib/hooks';
 import { List, Space, User } from '@prisma/client';
 import BreadCrumb from 'components/BreadCrumb';
-import SpaceMembers from 'components/SpaceMembers';
 import TodoList from 'components/TodoList';
 import WithNavBar from 'components/WithNavBar';
 import { GetServerSideProps } from 'next';
@@ -12,6 +11,7 @@ import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useContext, useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { getEnhancedPrisma } from 'server/enhanced-db';
+import SpaceMembers, { SpaceMembersModal } from 'components/SpaceMembers';
 
 function CreateDialog() {
     const space = useContext(SpaceContext);
@@ -64,7 +64,7 @@ function CreateDialog() {
                     setModalOpen(e.currentTarget.checked);
                 }}
             />
-            <div className="modal">
+            <div className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <h3 className="font-bold text-xl mb-8">Create a Todo list</h3>
                     <form onSubmit={onSubmit}>
@@ -97,8 +97,8 @@ function CreateDialog() {
                             </div>
                         </div>
                         <div className="modal-action">
-                            <input className="btn btn-primary" type="submit" value="Create" />
-                            <label htmlFor="create-list-modal" className="btn btn-outline">
+                            <input className="btn rounded-[12px] bg-[#EC683E] hover:bg-[#e6653e] text-[#fff]" type="submit" value="Create" />
+                            <label htmlFor="create-list-modal" className="btn btn-outline rounded-[12px]">
                                 Cancel
                             </label>
                         </div>
@@ -139,59 +139,66 @@ export default function SpaceHome(props: Props) {
 
     return (
         <>
-            <div className='hidden md:block'>
+            <div>
                 <WithNavBar>
-                    <div className="px-8 py-2">
-                        <BreadCrumb space={props.space} />
+                    <div className='hidden md:block'>
+                        <div className="px-8 py-2">
+                            <BreadCrumb space={props.space} />
+                        </div>
+                        <div className="p-8">
+                            <div className="w-full flex flex-col md:flex-row mb-8 space-y-4 md:space-y-0 md:space-x-4">
+                                <label htmlFor="create-list-modal" className="btn max-md:w-full rounded-[12px] bg-[#EC683E] hover:bg-[#e6653e] text-[#fff] btn-wide modal-button">
+                                    Create a list
+                                </label>
+                                <SpaceMembers />
+                            </div>
+
+                            <ul className="flex flex-wrap gap-6">
+                                {lists?.map((list) => (
+                                    <li key={list.id}>
+                                        <TodoList value={list} />
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <CreateDialog />
+                        </div>
                     </div>
-                    <div className="p-8">
-                        <div className="w-full flex flex-col md:flex-row mb-8 space-y-4 md:space-y-0 md:space-x-4">
-                            <label htmlFor="create-list-modal" className="btn max-md:w-full rounded-[12px] bg-[#EC683E] hover:bg-[#e6653e] text-[#fff] btn-wide modal-button">
-                                Create a list
+                    {/* MOBILE NAVIGATION */}
+                    <div className='block md:hidden'>
+                        <div className='fixed bottom-12 w-full z-10 flex justify-around items-center'>
+                            <div className='bg-[#EC683E] rounded-[500px] border border-black py-1 px-1 flex items-center gap-2'>
+                                <Link href={'/'} className='flex justify-center gap-1.5 bg-[#E5E1DE] rounded-[500px] py-2.5 ps-3 pe-5 border border-black'>
+                                    <Image src="/home.svg" alt="Home icon" width={25} height={25} />
+                                    Home
+                                </Link>
+                                <Link href={'/calender'} className='py-2.5 ps-2 pe-3'>
+                                    <Image src="/calender.svg" alt="Calender icon" width={25} height={25} />
+                                </Link>
+                                <SpaceMembers />
+                            </div>
+                            <label htmlFor="create-list-modal" className='modal-button bg-[#EC683E] rounded-full border border-black flex items-center h-[52px] w-[52px]'>
+                                <Image src="/plus.svg" alt="Plus icon" width={30} height={30} className='mx-auto' />
                             </label>
-                            <SpaceMembers />
                         </div>
-
-                        <ul className="flex flex-wrap gap-6">
-                            {lists?.map((list) => (
-                                <li key={list.id}>
-                                    <TodoList value={list} />
-                                </li>
-                            ))}
-                        </ul>
-
+                        <div className="p-8">
+                            <ul className="flex flex-wrap gap-6">
+                                {lists?.map((list) => (
+                                    <li key={list.id}>
+                                        <TodoList value={list} />
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="relative z-[9999]">
                         <CreateDialog />
+                        <SpaceMembersModal />
                     </div>
                 </WithNavBar>
             </div>
-            <div className='block md:hidden'>
-                <WithNavBar>
-                    <div className='fixed bottom-12 w-full z-10 flex justify-around items-center'>
-                        <div className='bg-[#EC683E] rounded-[500px] border border-black py-1 px-1 flex items-center gap-2'>
-                            <Link href={'/'} className='flex justify-center gap-1.5 bg-[#E5E1DE] rounded-[500px] py-2.5 ps-3 pe-5 border border-black'>
-                                <Image src="/home.svg" alt="Home icon" width={25} height={25} />
-                                Home
-                            </Link>
-                            <Link href={'/calender'} className='py-2.5 ps-2 pe-3'>
-                                <Image src="/calender.svg" alt="Calender icon" width={25} height={25} />
-                            </Link>
-                            <SpaceMembers />
-                        </div>
-                        <label htmlFor="create-list-modal" className='modal-button bg-[#EC683E] rounded-full border border-black flex items-center h-[52px] w-[52px]'>
-                            <Image src="/plus.svg" alt="Plus icon" width={30} height={30} className='mx-auto' />
-                        </label>
-                    </div>
-                    <div className="p-8">
-                        <ul className="flex flex-wrap gap-6">
-                            {lists?.map((list) => (
-                                <li key={list.id}>
-                                    <TodoList value={list} />
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </WithNavBar>
-            </div>
+
+
         </>
     );
 }
