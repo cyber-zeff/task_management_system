@@ -31,6 +31,7 @@ export default function TodoList(props: Props) {
     );
 
     const _createTodo = () => {
+        if (!title || title.trim() == "") return;
         void createTodo({
             data: {
                 title,
@@ -51,11 +52,11 @@ export default function TodoList(props: Props) {
             </div>
             <div className="container w-full flex flex-col items-center py-12 mx-auto">
                 <h1 className="text-2xl font-semibold mb-4">{props.list?.title}</h1>
-                <div className="flex space-x-2">
+                <div className="flex items-center gap-2">
                     <input
                         type="text"
                         placeholder="Type a title and press enter"
-                        className="input input-bordered w-72 max-w-xs mt-2"
+                        className="input input-bordered w-72 max-w-xs"
                         value={title}
                         onKeyUp={(e: KeyboardEvent<HTMLInputElement>) => {
                             if (e.key === 'Enter') {
@@ -67,7 +68,7 @@ export default function TodoList(props: Props) {
                         }}
                     />
                     <button onClick={() => _createTodo()}>
-                        <PlusIcon className="w-6 h-6 text-gray-500" />
+                        <PlusIcon className="w-8 h-8 text-black" />
                     </button>
                 </div>
 
