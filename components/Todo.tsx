@@ -29,7 +29,7 @@ export default function TodoComponent({ value, optimistic }: Props) {
     };
 
     return (
-        <div className="border rounded-lg px-8 py-4 shadow-lg flex flex-col items-center w-full lg:w-[480px]">
+        <div className="rounded-lg px-8 py-4 shadow-lg flex flex-col items-center w-full lg:w-[480px] border border-black">
             <div className="flex justify-between w-full mb-4">
                 <h3
                     className={`text-xl line-clamp-1 ${
