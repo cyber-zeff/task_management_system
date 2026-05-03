@@ -58,9 +58,9 @@ const CreateSpace: NextPage = () => {
 
     return (
         <WithNavBar>
-            <div className="flex items-center justify-center h-full">
+            <div className="flex items-center justify-center h-screen max-md:mx-8">
                 <form onSubmit={(e) => void onSubmit(e)}>
-                    <h1 className="text-3xl mb-8">Create a space</h1>
+                    <h1 className="text-3xl mb-8 font-semibold">Create a space</h1>
                     <div className="flex-col space-y-4">
                         <div>
                             <label htmlFor="name" className="text-lg">
@@ -91,15 +91,15 @@ const CreateSpace: NextPage = () => {
                         </div>
                     </div>
 
-                    <div className="flex space-x-4 mt-6">
+                    <div className="flex max-md:flex-col max-md:gap-4 max-md:w-full md:space-x-4 mt-8">
                         <input
                             type="submit"
                             disabled={name.length < 4 || name.length > 20 || !slug.match(/^[0-9a-zA-Z]{4,16}$/)}
-                            value="Create"
-                            className="btn btn-primary px-8"
+                            value="Create Space"
+                            className="btn rounded-[12px] bg-[#EC683E] hover:bg-[#e6653e] text-[#fff]"
                         />
                         <button
-                            className="btn btn-outline"
+                            className="btn btn-outline max-md:w-full"
                             onClick={(e) => {
                                 e.preventDefault();
                                 void router.push('/');
