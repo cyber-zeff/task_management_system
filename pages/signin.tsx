@@ -39,7 +39,7 @@ export default function Signup() {
             <Link href="/">
                 <div className="flex space-x-4 items-center mb-6 lg:mb-10">
                     <h1 className="text-3xl">Welcome to </h1>
-                    <Image src="/logo.png" width={120} height={120} alt="logo" className='mt-2.5' />
+                    <Image src="/logo.png" width={120} height={120} alt="logo" className='mt-1.5 md:mt-2.5' />
                 </div>
             </Link>
             <div className="items-center justify-center w-full bg-[#f4f2f1] rounded-lg shadow lg:flex md:mt-0 lg:max-w-screen-md xl:p-0">
