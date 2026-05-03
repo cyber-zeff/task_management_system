@@ -172,10 +172,11 @@ export default function SpaceHome(props: Props) {
                                 <Image src="/home.svg" alt="Home icon" width={25} height={25} />
                                 Home
                             </Link>
-                            <Link href={'/calender'} className='flex justify-center gap-1.5 bg-[#E5E1DE] rounded-[500px] py-2.5 ps-3 pe-5 border border-black'>
-                                <Image src="/calender.svg" alt="Calender icon" width={23} height={23} />
-                                Calender
+                            <Link href={'/calender'} className='py-2.5 ps-2 pe-3'>
+                                <Image src="/calender.svg" alt="Calender icon" width={25} height={25} />
+                                {/* Calender */}
                             </Link>
+                            <SpaceMembers />
                         </div>
                         <label htmlFor="create-list-modal" className='modal-button bg-[#EC683E] rounded-full border border-black flex items-center h-[52px] w-[52px]'>
                             <Image src="/plus.svg" alt="Plus icon" width={30} height={30} className='mx-auto' />
