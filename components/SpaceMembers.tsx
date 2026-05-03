@@ -10,7 +10,7 @@ function ManagementDialog(space?: Space) {
     return (
         <>
             <label htmlFor="management-modal" className="modal-button">
-                <PlusIcon className="w-6 h-6 text-gray-500 cursor-pointer mr-1" />
+                <PlusIcon className="w-7 h-7 text-black cursor-pointer mr-1" />
             </label>
 
             <input type="checkbox" id="management-modal" className="modal-toggle" />
