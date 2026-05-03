@@ -6,6 +6,8 @@ import SpaceMembers from 'components/SpaceMembers';
 import TodoList from 'components/TodoList';
 import WithNavBar from 'components/WithNavBar';
 import { GetServerSideProps } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useContext, useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -136,29 +138,61 @@ export default function SpaceHome(props: Props) {
     );
 
     return (
-        <WithNavBar>
-            <div className="px-8 py-2">
-                <BreadCrumb space={props.space} />
-            </div>
-            <div className="p-8">
-                <div className="w-full flex flex-col md:flex-row mb-8 space-y-4 md:space-y-0 md:space-x-4">
-                    <label htmlFor="create-list-modal" className="btn btn-primary btn-wide modal-button">
-                        Create a list
-                    </label>
-                    <SpaceMembers />
-                </div>
+        <>
+            <div className='hidden md:block'>
+                <WithNavBar>
+                    <div className="px-8 py-2">
+                        <BreadCrumb space={props.space} />
+                    </div>
+                    <div className="p-8">
+                        <div className="w-full flex flex-col md:flex-row mb-8 space-y-4 md:space-y-0 md:space-x-4">
+                            <label htmlFor="create-list-modal" className="btn max-md:w-full rounded-[12px] bg-[#EC683E] hover:bg-[#e6653e] text-[#fff] btn-wide modal-button">
+                                Create a list
+                            </label>
+                            <SpaceMembers />
+                        </div>
 
-                <ul className="flex flex-wrap gap-6">
-                    {lists?.map((list) => (
-                        <li key={list.id}>
-                            <TodoList value={list} />
-                        </li>
-                    ))}
-                </ul>
+                        <ul className="flex flex-wrap gap-6">
+                            {lists?.map((list) => (
+                                <li key={list.id}>
+                                    <TodoList value={list} />
+                                </li>
+                            ))}
+                        </ul>
 
-                <CreateDialog />
+                        <CreateDialog />
+                    </div>
+                </WithNavBar>
             </div>
-        </WithNavBar>
+            <div className='block md:hidden'>
+                <WithNavBar>
+                    <div className='fixed bottom-12 w-full z-10 flex justify-around items-center'>
+                        <div className='bg-[#EC683E] rounded-[500px] border border-black py-1 px-1 flex items-center gap-2'>
+                            <Link href={'/'} className='flex justify-center gap-1.5 bg-[#E5E1DE] rounded-[500px] py-2.5 ps-3 pe-5 border border-black'>
+                                <Image src="/home.svg" alt="Home icon" width={25} height={25} />
+                                Home
+                            </Link>
+                            <Link href={'/calender'} className='flex justify-center gap-1.5 bg-[#E5E1DE] rounded-[500px] py-2.5 ps-3 pe-5 border border-black'>
+                                <Image src="/calender.svg" alt="Calender icon" width={23} height={23} />
+                                Calender
+                            </Link>
+                        </div>
+                        <label htmlFor="create-list-modal" className='modal-button bg-[#EC683E] rounded-full border border-black flex items-center h-[52px] w-[52px]'>
+                            <Image src="/plus.svg" alt="Plus icon" width={30} height={30} className='mx-auto' />
+                        </label>
+                    </div>
+                    <div className="p-8">
+                        <ul className="flex flex-wrap gap-6">
+                            {lists?.map((list) => (
+                                <li key={list.id}>
+                                    <TodoList value={list} />
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </WithNavBar>
+            </div>
+        </>
     );
 }
 
