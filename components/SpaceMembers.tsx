@@ -33,6 +33,27 @@ function ManagementDialog(space?: Space) {
     );
 }
 
+export function SpaceMembersModal() {
+    const space = useCurrentSpace();
+    if (!space) return null;
+    return (
+        <>
+            <input type="checkbox" id="management-modal" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box">
+                    <h3 className="font-bold text-base md:text-lg">Manage Members of {space.name}</h3>
+                    <div className="p-4 mt-4">
+                        <ManageMembers space={space} />
+                    </div>
+                    <div className="modal-action">
+                        <label htmlFor="management-modal" className="btn btn-outline">Close</label>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
+
 export default function SpaceMembers() {
     const space = useCurrentSpace();
 
@@ -54,6 +75,9 @@ export default function SpaceMembers() {
     return (
         <div className="flex items-center">
             {ManagementDialog(space)}
+            {/* <label htmlFor="management-modal" className="modal-button cursor-pointer">
+                <PlusIcon className="w-7 h-7 text-black mr-1" />
+            </label> */}
             {members && (
                 <label className="mr-1 modal-button cursor-pointer" htmlFor="management-modal">
                     {members?.map((member) => (
