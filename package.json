@@ -37,6 +37,7 @@
         "react-toastify": "^9.0.8",
         "superjson": "^1.12.0",
         "swr": "^2.2.5",
+        "web-push": "^3.6.7",
         "zod": "3.25.76"
     },
     "devDependencies": {
@@ -45,6 +46,7 @@
         "@types/node": "^18.0.0",
         "@types/react": "^18.2.22",
         "@types/react-dom": "18.0.6",
+        "@types/web-push": "^3.6.4",
         "@typescript-eslint/eslint-plugin": "^6.13.1",
         "@typescript-eslint/parser": "^6.13.1",
         "@zenstackhq/swr": "2.22.1",
