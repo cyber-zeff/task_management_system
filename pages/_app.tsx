@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Provider as ZenStackHooksProvider } from '../lib/hooks';
 import { Analytics } from '@vercel/analytics/react';
 import Head from 'next/head';
+import { useEffect } from 'react';
 import '../styles/globals.css';
 
 function AppContent(props: { children: JSX.Element | JSX.Element[] }) {
@@ -25,6 +26,26 @@ function AppContent(props: { children: JSX.Element | JSX.Element[] }) {
 }
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+    useEffect(() => {
+        if ('serviceWorker' in navigator && 'PushManager' in window) {
+            navigator.serviceWorker.register('/sw.js').then(async (reg) => {
+                const permission = await Notification.requestPermission();
+                if (permission !== 'granted') return;
+
+                const existing = await reg.pushManager.getSubscription();
+                const subscription = existing ?? await reg.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
+                });
+
+                await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(subscription),
+                });
+            });
+        }
+    }, []);
     return (
         <>
             <Head>
