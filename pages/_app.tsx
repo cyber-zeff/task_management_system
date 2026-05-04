@@ -32,10 +32,22 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
                 const permission = await Notification.requestPermission();
                 if (permission !== 'granted') return;
 
+                // Convert VAPID public key from base64 string to Uint8Array
+                const vapidKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!;
+                const padding = '='.repeat((4 - (vapidKey.length % 4)) % 4);
+                const base64 = (vapidKey + padding).replace(/-/g, '+').replace(/_/g, '/');
+                const rawData = window.atob(base64);
+                const applicationServerKey = new Uint8Array(rawData.length);
+                for (let i = 0; i < rawData.length; i++) {
+                    applicationServerKey[i] = rawData.charCodeAt(i);
+                }
+
                 const existing = await reg.pushManager.getSubscription();
-                const subscription = existing ?? await reg.pushManager.subscribe({
+                if (existing) await existing.unsubscribe(); // force fresh subscription
+
+                const subscription = await reg.pushManager.subscribe({
                     userVisibleOnly: true,
-                    applicationServerKey: process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
+                    applicationServerKey,
                 });
 
                 await fetch('/api/subscribe', {
@@ -43,7 +55,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(subscription),
                 });
-            });
+            }).catch(console.error);
         }
     }, []);
     return (
