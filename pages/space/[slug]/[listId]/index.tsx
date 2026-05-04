@@ -31,13 +31,21 @@ export default function TodoList(props: Props) {
     );
 
     const _createTodo = () => {
-        if (!title || title.trim() == "") return;
+        if (!title || title.trim() == '') return;
         void createTodo({
             data: {
                 title,
                 list: { connect: { id: props.list.id } },
             },
         });
+
+        // Send notification
+        fetch('/api/notify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ taskTitle: title, listTitle: props.list.title }),
+        });
+
         setTitle('');
     };
 
