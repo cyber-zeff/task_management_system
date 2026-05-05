@@ -147,6 +147,11 @@ export default function SpaceHome(props: Props) {
                             >
                                 Create a list
                             </button>
+                            <Link href="/calender"
+                                className="btn max-md:w-full rounded-[12px] bg-[#EC683E] hover:bg-[#e6653e] text-[#fff] btn-wide"
+                            >
+                                Calender
+                            </Link>
                             <SpaceMembers />
                         </div>
                         <ul className="flex flex-wrap gap-6">
